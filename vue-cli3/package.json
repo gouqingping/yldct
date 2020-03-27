@@ -5,7 +5,6 @@
   "author": "Pat",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
     "dev": "vue-cli-service serve  --mode ENV_TYPE=dev  --mode SYS_TYPE=enterprise",
     "build:dev": "vue-cli-service build  --mode ENV_TYPE=dev  --mode SYS_TYPE=enterprise",
     "build": "vue-cli-service build",
