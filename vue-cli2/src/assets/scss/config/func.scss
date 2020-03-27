@@ -1,0 +1,63 @@
+@charset 'utf-8';
+
+//  设置字体位置
+// @include text()
+@mixin text-obj($c:center) {
+    .text-{
+        &#{$c} {
+            text-align:$c;
+        }
+    }
+}
+
+@mixin text($c:center) {
+    text-align:$c;
+}
+
+// float
+// @include float(left)
+@mixin float($c:left) {
+    float:$c;
+}
+//  设置边距 pd，mg
+// @include SET_MG()
+// trbl
+@mixin SET_MG($NAME:'padding',$MG_MATH:0,$MG_T:0,$MG_R:0,$MG_B:0,$MG_L:0) {
+    $className: GET_MG('-',$MG_T,$MG_R,$MG_B,$MG_L);
+    .grid- {
+        &#{$NAME}- {
+            &#{$MG_MATH} {
+                &#{$className} {
+                    @if $MG_T {
+                        #{$NAME}-top: #{$MG_T};
+                    }
+                    @if $MG_L {
+                        #{$NAME}-left: #{$MG_L};
+                    }
+                    @if $MG_B {
+                        #{$NAME}-bottom: #{$MG_B};
+                    }
+                    @if $MG_R {
+                        #{$NAME}-right: #{$MG_R};
+                    }
+                }
+            }
+        }
+    }
+}
+
+@function GET_MG($name,$MG_T,$MG_R,$MG_B,$MG_L) {
+    @if $MG_T != 0 {
+        $name:$name+"t";
+    };
+    @if $MG_R != 0 {
+        $name:$name+"r";
+    };
+    @if $MG_B != 0 {
+        $name:$name+"b";
+    };
+    @if $MG_L != 0 {
+        $name:$name+"l";
+    };
+    @return $name;
+}

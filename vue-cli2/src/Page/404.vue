@@ -1,0 +1,300 @@
+<template>
+	<div class="error">
+		<div class="container-floud">
+			<div class="col-xs-12 ground-color text-center">
+				<div class="container-error-404">
+					<div class="clip">
+						<div class="shadow">
+							<span class="digit thirdDigit">{{math[0]}}</span>
+						</div>
+					</div>
+					<div class="clip">
+						<div class="shadow">
+							<span class="digit secondDigit">{{math[1]}}</span>
+						</div>
+					</div>
+					<div class="clip">
+						<div class="shadow">
+							<span class="digit firstDigit">{{math[2]}}</span>
+						</div>
+					</div>
+					<div class="msg">
+						OH!
+						<span class="triangle"></span>
+					</div>
+				</div>
+				<h2 class="h1">{{msg}}</h2>
+				<p>
+					<a class="tohome" href="/">返回首页</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</template>
+<script>
+import Qs from "qs";
+export default {
+	data() {
+		return {
+			math: ["4", "0", "4"],
+			msg: "你访问的页面不存在或出现了错误……",
+			loop1: null,
+			loop2: null,
+			loop3: null
+		};
+	},
+	created() {},
+	mounted() {
+		this.init();
+	},
+	// 销毁完成事件
+	destroyed() {
+		// 遍历定义的计时器集合
+		// 销毁计时器
+		window.clearInterval(this.loop1);
+		window.clearInterval(this.loop2);
+		window.clearInterval(this.loop3);
+		this.loop1 = null;
+		this.loop2 = null;
+		this.loop3 = null;
+	},
+	methods: {
+		randomNum() {
+			return Math.floor(Math.random() * 9) + 1;
+		},
+		init() {
+			var time = 30,
+				i = 0,
+				number;
+			const query = Qs.parse(location).hash;
+			var math = this.math;
+
+			if (query.indexOf("500") > -1) {
+				math = "500".split("");
+				this.msg = "服务器发生错误……";
+			}
+			this.loop3 = setInterval(() => {
+				if (i > 40) {
+					clearInterval(this.loop3);
+					document.querySelector(".thirdDigit").textContent = math[0];
+				} else {
+					document.querySelector(
+						".thirdDigit"
+					).textContent = this.randomNum();
+					i++;
+				}
+			}, time);
+			this.loop2 = setInterval(() => {
+				if (i > 80) {
+					clearInterval(this.loop2);
+					document.querySelector(".secondDigit").textContent =
+						math[1];
+				} else {
+					document.querySelector(
+						".secondDigit"
+					).textContent = this.randomNum();
+					i++;
+				}
+			}, time);
+			this.loop1 = setInterval(() => {
+				if (i > 100) {
+					clearInterval(this.loop1);
+					document.querySelector(".firstDigit").textContent = math[2];
+				} else {
+					document.querySelector(
+						".firstDigit"
+					).textContent = this.randomNum();
+					i++;
+				}
+			}, time);
+		}
+	}
+};
+</script>
+<style scoped>
+.error {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+.error .clip .shadow {
+	height: 180px;
+}
+
+.error .clip:nth-of-type(2) .shadow {
+	width: 130px;
+}
+
+.error .clip:nth-of-type(1) .shadow,
+.error .clip:nth-of-type(3) .shadow {
+	width: 250px;
+}
+
+.error .digit {
+	width: 150px;
+	height: 150px;
+	line-height: 150px;
+	font-size: 120px;
+	font-weight: bold;
+}
+
+.error h2 {
+	font-size: 32px;
+}
+
+.error .msg {
+	left: 0;
+	top: -190px;
+	width: 80px;
+	height: 80px;
+	line-height: 80px;
+	font-size: 32px;
+}
+
+.error span.triangle {
+	top: 70%;
+	right: 0%;
+	border-left: 20px solid #535353;
+	border-top: 15px solid transparent;
+	border-bottom: 15px solid transparent;
+}
+
+.error .container-error-404 {
+	position: relative;
+	padding-top: 40px;
+}
+
+.error .container-error-404 .clip {
+	display: inline-block;
+	transform: skew(-45deg);
+}
+
+.error .clip .shadow {
+	overflow: hidden;
+}
+
+.error .clip:nth-of-type(2) .shadow {
+	overflow: hidden;
+	position: relative;
+	box-shadow: inset 20px 0px 20px -15px rgba(150, 150, 150, 0.8),
+		20px 0px 20px -15px rgba(150, 150, 150, 0.8);
+}
+
+.error .clip:nth-of-type(3) .shadow:after,
+.error .clip:nth-of-type(1) .shadow:after {
+	content: "";
+	position: absolute;
+	right: -8px;
+	bottom: 0px;
+	z-index: 9999;
+	height: 100%;
+	width: 10px;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(173, 173, 173, 0.8),
+		transparent
+	);
+	border-radius: 50%;
+}
+
+.error .clip:nth-of-type(3) .shadow:after {
+	left: -8px;
+}
+
+.error .digit {
+	position: relative;
+	top: 8%;
+	color: white;
+	background: #07b3f9;
+	border-radius: 50%;
+	display: inline-block;
+	transform: skew(45deg);
+}
+
+.error .clip:nth-of-type(2) .digit {
+	left: -10%;
+}
+
+.error .clip:nth-of-type(1) .digit {
+	right: -20%;
+}
+
+.error .clip:nth-of-type(3) .digit {
+	left: -20%;
+}
+
+.error h2 {
+	font-size: 24px;
+	color: #a2a2a2;
+	font-weight: bold;
+	padding-bottom: 20px;
+}
+
+.error .tohome {
+	font-size: 16px;
+	color: #07b3f9;
+}
+
+.error .msg {
+	position: relative;
+	z-index: 9999;
+	display: block;
+	background: #535353;
+	color: #a2a2a2;
+	border-radius: 50%;
+	font-style: italic;
+}
+
+.error .triangle {
+	position: absolute;
+	z-index: 999;
+	transform: rotate(45deg);
+	content: "";
+	width: 0;
+	height: 0;
+}
+
+@media (max-width: 767px) {
+	.error .clip .shadow {
+		height: 100px;
+	}
+	.error .clip:nth-of-type(2) .shadow {
+		width: 80px;
+	}
+	.error .clip:nth-of-type(1) .shadow,
+	.error .clip:nth-of-type(3) .shadow {
+		width: 100px;
+	}
+	.error .digit {
+		width: 80px;
+		height: 80px;
+		line-height: 80px;
+		font-size: 52px;
+	}
+	.error h2 {
+		font-size: 18px;
+	}
+	.error .msg {
+		top: -110px;
+		left: 15%;
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		font-size: 18px;
+	}
+	.error span.triangle {
+		top: 70%;
+		right: -3%;
+		border-left: 10px solid #535353;
+		border-top: 8px solid transparent;
+		border-bottom: 8px solid transparent;
+	}
+	.error .container-error-404 {
+		height: 150px;
+	}
+}
+</style>
