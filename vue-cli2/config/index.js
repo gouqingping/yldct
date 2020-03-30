@@ -10,7 +10,7 @@
 // Template version: 1.3.1
 // see http://vuejs-templates.github.io/webpack for documentation.
 const path = require('path')
-const Sys = require("@bit/patgp.yldct.ambfs")
+const Sys = require("p.fs.amb")
 const init = new Sys.init()
 const app = init.appConfig
 module.exports = {

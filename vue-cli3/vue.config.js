@@ -1,4 +1,4 @@
-const Sys = require("@bit/patgp.yldct.ambfs")
+const Sys = require("p.fs.amb")
 const path = require("path");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
