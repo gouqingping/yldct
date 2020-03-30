@@ -1,6 +1,6 @@
 {
   "name": "v-pat",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "V-Pat project",
   "author": "Pat",
   "private": true,
@@ -24,7 +24,7 @@
     "vuex-class": "^0.3.2"
   },
   "devDependencies": {
-    "@bit/patgp.yldct.ambfs": "^1.0.0",
+    "p.fs.amb": "^1.0.1",
     "@vue/cli-plugin-babel": "^4.2.0",
     "@vue/cli-plugin-eslint": "^4.2.0",
     "@vue/cli-service": "^4.2.0",
