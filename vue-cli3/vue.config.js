@@ -13,6 +13,9 @@ function resolve(dir) {
     return path.join(__dirname, dir)
 }
 
+
+console.log(process.env.npm_lifecycle_script)
+
 module.exports = {
     // 基本路径
     publicPath: './',
