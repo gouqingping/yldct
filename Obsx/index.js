@@ -4,7 +4,7 @@
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2020-11-17 16:51:27
  * @LastEditors  : Pat
- * @LastEditTime : 2020-12-03 17:18:42
+ * @LastEditTime : 2020-12-03 17:41:09
  */
 import observer from "./core/observer"
 import { isType,juxtaposeObject } from "./core/utils"
@@ -48,12 +48,16 @@ export default class Obsx {
      * @Date: 2020-12-03 16:32:33
      * @author: Pat
      */
-    watcher(itemName,callback) { 
-        addEventListener("obsxEvent", e => {
-            if(e.key==itemName){
-                callback(e.newValue)
-            }
-        });
+    watcher(itemName, callback) {
+        if (isType(itemName, "String")&&isType(callback, "function")) {
+            addEventListener("obsxEvent", e => {
+                if(e.key==itemName){
+                    callback(e.newValue)
+                }
+            });
+        } else { 
+            console.error(`Watcher key type is not String or callback type is not Function`);
+        }
     }
     /**
      * @description: 设置数据
