@@ -4,7 +4,7 @@
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2020-03-27 19:40:49
  * @LastEditors  : Pat
- * @LastEditTime : 2020-12-03 17:10:17
+ * @LastEditTime : 2020-12-03 17:37:59
  -->
 # Obsx
 数据单向状态管理工具
@@ -47,10 +47,15 @@ $Obsx.setData({
 });
 ```
 
-### setWatcher(Object) 设置观察
+### setWatcher(Object) 设置多个观察
 ```JavaScript
 $Obsx.setWatcher({
     testA:(value)=>{ console.log(`testA value:${value}`)},
     textB:(value)=>{ console.log(`textB value:${value}`)}
 });
+```
+
+### watcher(String，Function) 设置单个观察
+```JavaScript
+$Obsx.watcher(testA,(value)=>{ console.log(`testA value:${value}`)});
 ```
