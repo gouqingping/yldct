@@ -4,15 +4,16 @@
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2020-11-17 16:51:27
  * @LastEditors  : Pat
- * @LastEditTime : 2020-12-03 17:41:09
+ * @LastEditTime : 2020-12-04 11:45:33
  */
-import observer from "./core/observer"
-import { isType,juxtaposeObject } from "./core/utils"
+import observer from "./core/observer.js"
+import { isType,juxtaposeObject } from "./core/utils.js"
 export default class Obsx { 
     constructor(opt) {
         this.$data = {};
         this.$watcher_ = {};
         this.$init_(opt || { data: {}, watcher: {} });
+        return this;
     }
     /**
      * @description: 设置条件
@@ -22,7 +23,8 @@ export default class Obsx {
      * @author: Pat
      */
     setOptions(opt) { 
-        this.$init_(opt)
+        this.$init_(opt);
+        return this;
     }
     /**
      * @description: 设置观察
@@ -39,6 +41,7 @@ export default class Obsx {
         } else { 
             console.error(`Wather data not Object`);
         }
+        return this;
     }
     /**
      * @description: 单个参数观察
@@ -48,8 +51,14 @@ export default class Obsx {
      * @Date: 2020-12-03 16:32:33
      * @author: Pat
      */
-    watcher(itemName, callback) {
-        if (isType(itemName, "String")&&isType(callback, "function")) {
+    watcher(itemName, callback = e=>e) {
+        if(isType(itemName, "Object")||!itemName){ 
+            Object.keys(itemName).map(item => { 
+                this.watcher(item, itemName[item]);
+            })
+            return;
+        }
+        if (isType(itemName, "String")&& typeof callback == "function") {
             addEventListener("obsxEvent", e => {
                 if(e.key==itemName){
                     callback(e.newValue)
@@ -58,6 +67,7 @@ export default class Obsx {
         } else { 
             console.error(`Watcher key type is not String or callback type is not Function`);
         }
+        return this;
     }
     /**
      * @description: 设置数据
@@ -72,6 +82,7 @@ export default class Obsx {
             console.error(`data not Object`);
         }
         this.observerData_();
+        return this;
     }
     /**
      * @description: 初始化Vm
