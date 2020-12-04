@@ -4,7 +4,7 @@
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2020-11-17 16:51:27
  * @LastEditors  : Pat
- * @LastEditTime : 2020-12-04 12:09:04
+ * @LastEditTime : 2020-12-04 12:17:18
  */
 import observer from "./core/observer.js"
 import { isType,juxtaposeObject } from "./core/utils.js"
@@ -58,14 +58,14 @@ export default class Obsx {
             })
             return;
         }
-        if (isType(itemName, "String")&& typeof callback == "function") {
+        if (isType(itemName, "String")) {
             addEventListener("obsxEvent", e => {
-                if(e.key==itemName){
+                if(e.key==itemName&&callback){
                     callback(e.newValue)
                 }
             });
         } else { 
-            console.error(`Watcher key type is not String or callback type is not Function`);
+            console.error(`Watcher key type is not String`);
         }
         return this;
     }
@@ -94,7 +94,7 @@ export default class Obsx {
      * @author: Pat
      */
     $init_(options) {
-        if (juxtaposeObject(options, { data: "", watcher: "" })) {
+        if (juxtaposeObject(options, { data: ""})) {
             const { data, watcher } = options;
             this.$data = Object.assign(this.$watcher_, isType(data, 'object') ? data : {});
             Object.keys(this.$data).forEach(key => {
