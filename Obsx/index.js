@@ -4,7 +4,7 @@
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2020-11-17 16:51:27
  * @LastEditors  : Pat
- * @LastEditTime : 2020-12-04 11:45:33
+ * @LastEditTime : 2020-12-04 12:09:04
  */
 import observer from "./core/observer.js"
 import { isType,juxtaposeObject } from "./core/utils.js"
@@ -78,6 +78,9 @@ export default class Obsx {
     setData(data) {
         if (isType(data, "Object")) {
             this.$data = Object.assign(this.$data, data)
+            Object.keys(data).forEach(key => {
+                this.watcher( key, e=>e)
+            })
         } else { 
             console.error(`data not Object`);
         }
@@ -94,6 +97,9 @@ export default class Obsx {
         if (juxtaposeObject(options, { data: "", watcher: "" })) {
             const { data, watcher } = options;
             this.$data = Object.assign(this.$watcher_, isType(data, 'object') ? data : {});
+            Object.keys(this.$data).forEach(key => {
+                this.watcher( key, e=>e)
+            })
             this.$watcher_ = Object.assign(this.$watcher_, isType(watcher, 'object') ? watcher : {});
             this.observerData_();
         } else { 
