@@ -7,7 +7,7 @@
  * @LastEditTime : 2020-12-01 11:35:38
  */
 import Dep from "./Dep.js"
-import { isType } from "@/shared/utils.js"
+import { isType } from "./utils.js"
 class Observer { 
     constructor(data, callback = {}) {
         this.data = data;
