@@ -4,7 +4,7 @@
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2020-11-17 16:51:27
  * @LastEditors  : Pat
- * @LastEditTime : 2020-12-04 12:17:18
+ * @LastEditTime : 2020-12-04 15:57:08
  */
 import observer from "./core/observer.js"
 import { isType,juxtaposeObject } from "./core/utils.js"
@@ -59,8 +59,8 @@ export default class Obsx {
             return;
         }
         if (isType(itemName, "String")) {
-            addEventListener("obsxEvent", e => {
-                if(e.key==itemName&&callback){
+            addEventListener("obsxEvent" + itemName, e => {
+                if (e.key == itemName && typeof callback == "function") {
                     callback(e.newValue)
                 }
             });
@@ -78,9 +78,6 @@ export default class Obsx {
     setData(data) {
         if (isType(data, "Object")) {
             this.$data = Object.assign(this.$data, data)
-            Object.keys(data).forEach(key => {
-                this.watcher( key, e=>e)
-            })
         } else { 
             console.error(`data not Object`);
         }
@@ -97,9 +94,6 @@ export default class Obsx {
         if (juxtaposeObject(options, { data: ""})) {
             const { data, watcher } = options;
             this.$data = Object.assign(this.$watcher_, isType(data, 'object') ? data : {});
-            Object.keys(this.$data).forEach(key => {
-                this.watcher( key, e=>e)
-            })
             this.$watcher_ = Object.assign(this.$watcher_, isType(watcher, 'object') ? watcher : {});
             this.observerData_();
         } else { 
@@ -112,7 +106,10 @@ export default class Obsx {
      * @author: Pat
      */
     observerData_() { 
-        Object.keys(this.$data).forEach(key => { this.proxyKeys_(key) });
+        Object.keys(this.$data).forEach(key => {
+            this.proxyKeys_(key);
+            this.watcher(key, e => e);
+        });
         observer(this.$data);
         setTimeout(() => Object.keys(this.$watcher_).forEach(key => {
             this.watcher( key, this.$watcher_[key])
@@ -126,7 +123,7 @@ export default class Obsx {
      */
     proxyKeys_ (key) {
         let self = this;
-        const ITEM_EVENT = new Event("obsxEvent");
+        const ITEM_EVENT = new Event("obsxEvent"+key);
         Object.defineProperty(this, key, {
             enumerable: false,
             configurable: true,
