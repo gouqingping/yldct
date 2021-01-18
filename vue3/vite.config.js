@@ -4,9 +4,9 @@
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2020-12-29 11:30:06
  * @LastEditors  : Pat
- * @LastEditTime : 2021-01-18 10:11:22
+ * @LastEditTime : 2021-01-18 14:15:30
  */
-const path = require('path'),ambfs = require("./amb.fs");
+const path = require('path'),ambfs = require("p.fs.amb");
 function resolve(dir) { return path.resolve(__dirname, ".", dir) }
 // set the current environment
 ambfs();
