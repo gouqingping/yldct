@@ -4,9 +4,9 @@
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2020-02-19 15:31:14
  * @LastEditors  : Pat
- * @LastEditTime : 2020-12-25 10:20:57
+ * @LastEditTime : 2020-12-29 14:52:43
  */
-import axios from 'axios';
+import axios from "axios";
 // 响应时间
 axios.defaults.timeout = 5 * 10000;
 // 配置cookie

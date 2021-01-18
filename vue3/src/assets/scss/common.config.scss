@@ -1,0 +1,33 @@
+@charset 'utf-8';
+
+:root {
+    --fontFamily: "Arial";
+    // Page color
+    // 主色调
+    --defaultColor: #126BFF;
+    // 常规辅助色
+    --auxColor: #FD9A29;
+    // 补充辅助色
+    --comColor: #23d9e0;
+    // 主体字体色
+    --defaultFontColor: #13213B;
+    // 辅助字体色
+    --auxFontColor: #7C8396;
+    // 补充辅助字体色
+    --comFontColor: #D7DBE3;
+
+
+    // page commom size
+    // 默认字体大小
+    --defaultFontSize: 14px;
+    // 描述及提示文字大小
+    --promptTextSize: 12px;
+    // 小标题文字大小
+    --subtitleSize: 16px;
+    // 一般标题文字大小
+    --defaultTileSize: 24px;
+    // 大标题文字大小
+    --headlineSize: 30px;
+    // 行间距
+    --lineSpacing: 1.777777777;
+}

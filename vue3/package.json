@@ -1,0 +1,45 @@
+{
+  "name": "adminsys",
+  "version": "0.0.1",
+  "author": "PatGp",
+  "scripts": {
+    "dev": "vite --mode ENV_TYPE=dev  --mode SYS_TYPE=enterprise ",
+    "build": "vite build",
+    "build:dev": "vite build --mode ENV_TYPE=dev --mode SYS_TYPE=enterprise"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "element-plus": "^1.0.1-beta.27",
+    "vue": "^3.0.5",
+    "vue-axios": "^3.2.2",
+    "vue-router": "^4.0.3",
+    "vuex": "^4.0.0-rc.2"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.5",
+    "babel-plugin-component": "^1.1.1",
+    "p.fs.amb": "^1.0.7",
+    "qs": "^6.9.6",
+    "sass": "^1.32.4",
+    "typescript": "^4.1.3",
+    "vite": "^1.0.0-rc.13"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
