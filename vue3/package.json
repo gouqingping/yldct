@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite --mode ENV_TYPE=dev  --mode SYS_TYPE=enterprise ",
     "build": "vite build",
-    "build:dev": "vite build --mode ENV_TYPE=dev --mode SYS_TYPE=enterprise"
+    "build:dev": "vite build -- --mode ENV_TYPE=dev -- --mode SYS_TYPE=enterprise"
   },
   "dependencies": {
     "axios": "^0.21.1",
