@@ -1,0 +1,121 @@
+::-webkit-scrollbar {
+    display: none;
+    /* Chrome Safari */
+}
+
+.navMenu {
+    position: relative;
+    box-sizing: border-box;
+    padding-bottom: var(--spacing);
+    width: 100%;
+    height: 100%;
+
+    .module-title {
+        width: 100%;
+        height: var(--headerHeight);
+        line-height: var(--headerHeight);
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        cursor: pointer;
+
+        img {
+            max-width: var(--defaultHeight);
+            max-height: var(--defaultHeight);
+            opacity: 0;
+        }
+
+        .module-logo {
+            width: calc(var(--headerHeight) - (var(--spacing)*2));
+            height: calc(var(--headerHeight) - (var(--spacing)*2));
+            opacity: 1;
+        }
+
+        .module-name {
+            text-align: left;
+            font-size: var(--subtitleSize);
+            color: white;
+            padding-left: var(--spacing);
+        }
+    }
+}
+
+.el-popper {
+
+    .el-menu-item,
+    .el-submenu__title {
+        color: var(--defaultFontColor) !important;
+    }
+
+    .is-active {
+        color: var(--defaultColor) !important;
+    }
+}
+
+.el-popper,
+.navMenu {
+    .el-menu {
+        border: none !important;
+
+        &.el-menu--collapse {
+            width: 100% !important;
+
+            .module-name {
+                display: none;
+            }
+
+            .module-logo {
+                width: calc(var(--siderBarWidth) - var(--spacing));
+                height: calc(var(--siderBarWidth) - var(--spacing));
+                opacity: 1;
+            }
+
+            [role="menuitem"],
+            .el-submenu__title {
+                text-align: center;
+                margin: 0 !important;
+                padding: 0 !important;
+
+                .iconfont {
+                    margin: 0 !important;
+                    padding: 0 !important;
+                }
+
+                .title {
+                    display: none;
+                }
+            }
+
+            .el-tooltip {
+                padding: 0 !important;
+                font-size: var(--subtitleSize);
+                text-align: center;
+            }
+        }
+
+        .el-menu-item {
+            height: var(--headlineSize) !important;
+            line-height: var(--headlineSize) !important;
+
+            &.is-active {
+                border-radius: 0;
+            }
+        }
+
+        .el-submenu__title {
+            height: var(--headlineSize) !important;
+            line-height: var(--headlineSize) !important;
+        }
+    }
+
+}
+
+.menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow-y: auto;
+}

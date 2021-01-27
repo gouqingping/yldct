@@ -1,10 +1,10 @@
 /*
  * @Autor        : Pat
- * @Description  : yldct axios api
+ * @Description  : axios config
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2020-02-19 15:31:14
  * @LastEditors  : Pat
- * @LastEditTime : 2020-12-29 14:52:43
+ * @LastEditTime : 2021-01-27 10:06:37
  */
 import axios from "axios";
 // 响应时间
@@ -15,8 +15,8 @@ axios.defaults.timeout = 5 * 10000;
 axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 
 // 异常拦截处理器
-const errorStatus = (error) => {
-    if (error.response) { 
+function errorStatus(error: any) {
+    if (error.response) {
         const ERR_STATUS = error.response.status;
         switch (ERR_STATUS) {
             /* eslint-disable no-param-reassign */
@@ -35,7 +35,8 @@ const errorStatus = (error) => {
             /* eslint-disabled */
         }
         return Promise.reject(error);
-    }
+    };
+    return;
 };
 
 // POST传参序列化(添加请求拦截器)
@@ -55,4 +56,4 @@ axios.interceptors.response.use(res => {
     };
 }, errorStatus);
 
-export default axios;
+export default axios as any;

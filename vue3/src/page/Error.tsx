@@ -1,4 +1,13 @@
+/*
+ * @Autor        : Pat
+ * @Description  : 
+ * @Email        : gouqingping@yahoo.com
+ * @Date         : 2021-01-20 09:20:23
+ * @LastEditors  : Pat
+ * @LastEditTime : 2021-01-27 13:39:41
+ */
 import "/@/assets/scss/error.scss";
+import { RouterLink } from 'vue-router';
 import { defineComponent, onBeforeUpdate, onMounted } from 'vue';
 
 function randomNum(): any {
@@ -9,6 +18,7 @@ function initMath(math: Array<string | null>): any {
 	let time = 20, i = 0, timr: Array<number | any> = [];
 	math.forEach((element: string | null, index: number) => {
 		const currentElement: any = document.querySelector(`.Digit_${index}`);
+		element;
 		timr.push(setInterval(() => {
 			if (i > (40 * (index + 0.6))) {
 				clearInterval(timr[index]);
@@ -24,7 +34,7 @@ function initMath(math: Array<string | null>): any {
 
 export default defineComponent({
 	setup() {
-		let timr: Array<number | any> = [], math: Array<string | null> = ["4", "0", "4"], msg: String = "访问的页面不存在！";
+		let timr: Array<number | any> = [], math: Array<string | null> = ["4", "0", "4"], msg: String = "The visited page does not exist!";
 
 		onMounted(() => {
 			timr = initMath(math);
@@ -60,7 +70,7 @@ export default defineComponent({
 							</div>
 						</div>
 						<h2 class="h1">{msg}</h2>
-						<p><a class="tohome" href="./">返回首页</a></p>
+						<p><RouterLink class="tohome" to="/home">to home page</RouterLink></p>
 					</div>
 				</div>
 			</div>

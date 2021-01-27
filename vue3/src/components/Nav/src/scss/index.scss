@@ -1,0 +1,90 @@
+.sys-contail {
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    --breadcrumbHeight: 40px;
+    --containerHeight: calc(100% - var(--headerHeight));
+    --mainHeieght: calc(100% - (var(--breadcrumbHeight) * 2));
+
+
+    &.left {
+        --containerHeight: 100%;
+        --mainHeieght: calc(100% - ((var(--breadcrumbHeight) * 2) + var(--headerHeight)));
+    }
+
+    .header {
+        width: 100%;
+        height: var(--headerHeight);
+        line-height: var(--headerHeight);
+        padding: 0 var(--spacing);
+        box-sizing: border-box;
+        color: var(--headerFontColor);
+        background-color: var(--headerBgColor);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .container {
+        width: 100%;
+        height: var(--containerHeight);
+        display: flex;
+
+        .nav-sider-bar {
+            width: var(--siderBarWidth);
+            height: 100%;
+            background-color: var(--defaultFontColor);
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .content {
+            position: relative;
+            width: calc(100% - var(--siderBarWidth));
+            height: 100%;
+            overflow: hidden;
+            transition: all 0.3s;
+
+            .app-main {
+                height: var(--mainHeieght);
+                overflow-y: auto;
+                box-sizing: border-box;
+                width: 100%;
+                overflow-x: hidden;
+                padding: var(--spacing);
+                background-color: var(--comFontColors);
+
+                .content {
+                    width: 100%;
+                    border-radius: var(--radius);
+                    background-color: white;
+                    padding: var(--spacing);
+                    box-shadow: 0 0 var(--promptTextSize) rgba(0, 0, 0, 0.02);
+                }
+            }
+        }
+
+        .isCollapse {
+            width: 40px;
+        }
+
+        .contentIsCollapse {
+            width: calc(100% - 70px);
+        }
+
+        .fade-transform-leave-active,
+        .fade-transform-enter-active {
+            transition: all 0.1s;
+        }
+
+        .fade-transform-enter {
+            opacity: 0;
+            transform: translateX(-var(--spacing));
+        }
+
+        .fade-transform-leave-to {
+            opacity: 0;
+            transform: translateX(var(--spacing));
+        }
+    }
+}

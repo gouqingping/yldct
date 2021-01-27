@@ -4,7 +4,7 @@
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2020-12-29 11:32:37
  * @LastEditors  : Pat
- * @LastEditTime : 2020-12-29 15:18:00
+ * @LastEditTime : 2021-01-19 13:54:26
  */
 module.exports = {
     "env": {
@@ -17,7 +17,6 @@ module.exports = {
         "Plyr": true,
         "AMap": true
     },
-    "parser": "babel-eslint",
     "parserOptions": {
         "sourceType": "module",
         "ecmaFeatures": {

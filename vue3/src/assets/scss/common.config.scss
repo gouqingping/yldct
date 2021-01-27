@@ -15,6 +15,12 @@
     --auxFontColor: #7C8396;
     // 补充辅助字体色
     --comFontColor: #D7DBE3;
+    // 补充辅助字体色
+    --comFontColors: #f0f2f5;
+    // 导航栏背景色
+    --headerBgColor: "white";
+    // 导航栏字体色
+    --headerFontColor: "#333";
 
 
     // page commom size
@@ -30,4 +36,29 @@
     --headlineSize: 30px;
     // 行间距
     --lineSpacing: 1.777777777;
+    // 间距
+    --spacing: 15px;
+    // 边角
+    --radius: 4px;
+    // inupt buttom height
+    --defaultHeight: 36px;
+
+    // header config
+    --headerHeight: 50px;
+    // 导航栏宽度
+    --siderWidth: 260px;
+    // 导航栏收起宽度
+    --subSiderWidth: 40px;
+
+    //The configurable properties of input element
+    --inputHeight: 32px;
+    --inputBorderRadius: var(--radius);
+    --inputPadding: 0px 12px;
+
+    // hover
+    --hover: #1890ff;
+    //边框
+    --border: #d9d9d9;
+    //提示
+    --tip: #bfbfbf;
 }

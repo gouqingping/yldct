@@ -1,21 +1,22 @@
 // import qs from "qs";
-import { Case, isType } from "/@/shared/utils.js";
-import axios from "./axios.config.js";
-export const request = (type, url, data, headers = {
+import { Case, isType } from "./_utils";
+import axios from "./axios.config";
+import { AnyObject } from "element-plus/lib/el-table/src/table.type";
+export const request = (type: string, url: string, data: any, headers = {
     "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
 }) => new Promise((resolve, reject) => {
     axios[type](url, Case(type) === Case("post") ? JSON.stringify(data) : data, { headers })
-        .then(res => {
+        .then((res: any) => {
             resolve(res)
-        }, err => {
+        }, (err: any) => {
             reject(err)
         })
-        .catch(err => {
+        .catch((err: any) => {
             reject(err)
         })
 })
 
-export const REQUEST_AXIOS = {
+export const REQUEST_AXIOS: AnyObject = {
     /**
      * @description: post request
      * @param {string} url  
@@ -24,7 +25,7 @@ export const REQUEST_AXIOS = {
      * @Date: 2020-07-31 14:29:27
      * @author: Pat
      */
-    async post(url, data) { return await request("post", url, data) },
+    async post(url: string, data: any) { return await request("post", url, data) },
     /**
      * @description: put request
      * @param {string} url  
@@ -33,7 +34,7 @@ export const REQUEST_AXIOS = {
      * @Date: 2020-07-31 14:29:27
      * @author: Pat
      */
-    async put(url, data) {
+    async put(url: string, data: any) {
         return await request("put", url, data, {
             'Content-Type': 'application/json'
         })
@@ -46,7 +47,7 @@ export const REQUEST_AXIOS = {
      * @Date: 2020-07-31 14:29:27
      * @author: Pat
      */
-    async postJson(url, data = {}) {
+    async postJson(url: string, data: AnyObject = {}) {
         return await request("post", url, data, {
             'Content-Type': 'application/json'
         })
@@ -60,7 +61,7 @@ export const REQUEST_AXIOS = {
      * @Date: 2020-07-31 14:29:27
      * @author: Pat
      */
-    async get(url, params, headers) {
+    async get(url: string, params: AnyObject, headers: any) {
         const data = await request("get", url, { params: params }, headers)
         return new Promise((resolve, reject) => {
             resolve(data)
@@ -74,15 +75,15 @@ export const REQUEST_AXIOS = {
      * @Date: 2020-07-31 14:29:27
      * @author: Pat
      */
-    uploadRequest(url, params) {
+    uploadRequest(url: string, params: AnyObject) {
         return new Promise((resolve, reject) => {
             axios.create({
                 withCredentials: true
-            }).post(url, params).then(response => {
+            }).post(url, params).then((response: any) => {
                 resolve(response)
-            }, err => {
+            }, (err: AnyObject) => {
                 reject(err)
-            }).catch((error) => {
+            }).catch((error: AnyObject) => {
                 reject(error)
             })
         })
@@ -95,8 +96,8 @@ export const REQUEST_AXIOS = {
      * @Date: 2020-07-31 14:29:27
      * @author: Pat
      */
-    uploadFile(url, data) {
-        let Authorization = ""
+    uploadFile(url: string, data: any) {
+        let Authorization: string | null = ""
         if (localStorage.getItem("token")) {
             Authorization = localStorage.getItem("token")
         }
@@ -108,29 +109,29 @@ export const REQUEST_AXIOS = {
                     "Authorization": Authorization,
                     'Content-Type': 'multipart/form-data'
                 }
-            }).then(response => {
+            }).then((response: any) => {
                 resolve(response)
-            }, err => {
+            }, (err: any) => {
                 reject(err)
-            }).catch((error) => {
+            }).catch((error: any) => {
                 reject(error)
             })
         })
     }
 }
 
-export default async function ylAxios(type, url, params) {
+export default async function ElAxios(type: string, url: string, params: any) {
     if (!type && !isType(type, "string")) {
-        throw 'ylAxios Error: type is undefined!'
+        throw 'ElAxios Error: type is undefined!'
         return
     } else if (!url && !isType(url, "string")) {
-        throw 'ylAxios Error: url is undefined!'
+        throw 'ElAxios Error: url is undefined!'
         return
     }
     if (REQUEST_AXIOS[type]) {
         return await REQUEST_AXIOS[type](url, params)
     } else {
-        throw 'ylAxios Error: Type is undefined!'
+        throw 'ElAxios Error: Type is undefined!'
         return
     }
 }

@@ -1,0 +1,41 @@
+.nav-header {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    justify-content: space-between;
+
+    .nav-center {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-left: var(--spacing);
+
+        .item {
+            padding-left: var(--spacing);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .nav-header-logo {
+        text-align: left;
+        font-size: var(--subtitleSize);
+        box-sizing: border-box;
+        cursor: pointer;
+        background-size: 100%;
+        display: flex;
+        align-items: center;
+
+        .fold {
+            margin-right: var(--spacing);
+        }
+
+        img {
+            max-height: calc(100% - var(--spacing));
+            margin-right: var(--spacing);
+        }
+    }
+}

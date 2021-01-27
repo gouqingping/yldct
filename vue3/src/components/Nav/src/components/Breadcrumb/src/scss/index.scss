@@ -1,0 +1,22 @@
+.app-breadcrumb {
+    font-size: var(--defaultFontSize);
+    line-height: var(--breadcrumbHeight);
+    padding: 0 var(--spacing);
+    border-bottom: 1px solid var(--comFontColor);
+    overflow: hidden;
+
+    .no-redirect {
+        cursor: text;
+    }
+}
+
+.page-title {
+    font-weight: 100;
+    padding: 0 var(--spacing);
+    line-height: var(--breadcrumbHeight);
+    font-size: var(--subtitleSize);
+}
+
+.can-router {
+    font-weight: 100;
+}
