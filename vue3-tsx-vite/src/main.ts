@@ -4,7 +4,7 @@
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2020-12-29 11:16:41
  * @LastEditors  : Pat
- * @LastEditTime : 2021-01-27 09:26:41
+ * @LastEditTime : 2021-01-28 15:31:20
  */
 import { createApp } from 'vue';
 import router, { setRoute } from '/@/router';
@@ -15,6 +15,7 @@ import '/@/assets/scss/common.scss';
 import 'element-plus/lib/theme-chalk/index.css';
 import sys from "./init/sys";
 import amb from "/@/init/amb.js"
+// Create system app
 const app = createApp(App);
 // Configure routing
 setRoute(app);
@@ -24,15 +25,19 @@ setupStore(app);
 router.isReady().then(() => {
     app.mount('#app', true);
 });
+// Turn off vue related warning messages
+app.config.warnHandler = () => null;
+// Open system performance
+app.config.performance = true;
 // The development environment takes effect
-if (sys.type == "enterprise") {
-    app.config.performance = true;
-    app.config.warnHandler = () => null;
+if (sys.type === "enterprise") {
+    // Whether to enable Mockjs
+    // If the Amb mock parameter is enabled
+    // then mock data simulation is enabled
     if (amb.mock) {
         setupProdMockServer();
     }
 } else {
-    app.config.performance = false;
-    app.config.warnHandler = () => null;
+    // Close page error prompt
     app.config.errorHandler = () => null;
 };
