@@ -4,17 +4,16 @@
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2020-02-19 15:31:14
  * @LastEditors  : Pat
- * @LastEditTime : 2021-02-26 18:27:47
+ * @LastEditTime : 2021-02-26 18:31:23
  */
-import { AnyObject } from "./_utils";
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, Canceler } from "axios";
+import { AnyObject, Source } from "./_utils";
 // Set response time
 axios.defaults.timeout = 5 * 10000;
 // Set common configure cookie
 // axios.defaults.withCredentials = true
 // Set common configure request header
 axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-export interface Source { umet: string, cancel: Canceler }
 // Define an array to store the cancellation function and corresponding identifier of each ajax request
 let sources: Source[] = [];
 // Request anti-shake when a URL address is requested multiple times, the previous request will be cancelled

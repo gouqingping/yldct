@@ -4,9 +4,11 @@
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2021-01-27 10:03:02
  * @LastEditors  : Pat
- * @LastEditTime : 2021-02-26 18:26:41
+ * @LastEditTime : 2021-02-26 18:31:49
  */
 
+import { Canceler } from "axios";
+export interface Source { umet: string, cancel: Canceler }
 export declare interface AnyObject {
     [key: string]: any;
 }
