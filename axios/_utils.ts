@@ -4,7 +4,7 @@
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2021-01-27 10:03:02
  * @LastEditors  : Pat
- * @LastEditTime : 2021-02-26 18:03:04
+ * @LastEditTime : 2021-02-26 18:20:21
  */
 /**
  * @description: Determine whether the data type is the specified type
@@ -50,7 +50,7 @@ export function throttl(time: number = 500) {
     return function (callback: Function) {
         clearTimeout(d);
         return new Promise((resolve) => {
-            d = setTimeout(async () => resolve(callback), time);
+            d = setTimeout(() => resolve(callback), time);
         })
     }
 }
