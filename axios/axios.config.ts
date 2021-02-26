@@ -4,7 +4,7 @@
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2020-02-19 15:31:14
  * @LastEditors  : Pat
- * @LastEditTime : 2021-02-26 17:50:15
+ * @LastEditTime : 2021-02-26 18:21:11
  */
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, Canceler } from "axios";
 // Set response time
@@ -69,4 +69,4 @@ axios.interceptors.response.use((res: AxiosResponse<any>) => {
     handleSource(res.config)
     return res.data ? res.data : res
 }, errorStatus);
-export default axios as any;
+export default axios;
