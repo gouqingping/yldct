@@ -4,8 +4,12 @@
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2021-01-27 10:03:02
  * @LastEditors  : Pat
- * @LastEditTime : 2021-02-26 18:20:21
+ * @LastEditTime : 2021-02-26 18:26:41
  */
+
+export declare interface AnyObject {
+    [key: string]: any;
+}
 /**
  * @description: Determine whether the data type is the specified type
  * @param {any} obj all data type

@@ -1,7 +1,6 @@
 // import qs from "qs";
-import { Case, isType, throttl } from "./_utils";
+import { Case, isType, throttl, AnyObject } from "./_utils";
 import axios from "./axios.config";
-import { AnyObject } from "element-plus/lib/el-table/src/table.type";
 const request = (type: string, url: string, data: any, headers = {
     "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
 }) => new Promise((resolve, reject) => {
