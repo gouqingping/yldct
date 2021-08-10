@@ -4,8 +4,14 @@
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2021-01-27 10:03:02
  * @LastEditors  : Pat
- * @LastEditTime : 2021-01-27 10:24:06
+ * @LastEditTime : 2021-03-05 16:39:05
  */
+
+import { Canceler } from "axios";
+export interface Source { umet: string, cancel: Canceler }
+export declare interface AnyObject {
+    [key: string]: any;
+}
 /**
  * @description: Determine whether the data type is the specified type
  * @param {any} obj all data type
@@ -37,4 +43,20 @@ export function firstCase(str: string): string {
  */
 export function Case(str: string): string {
     return str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())
+}
+/**
+ * @description: throttl
+ * @param {Function} callback
+ * @param {number} time
+ * @Date: 2021-02-26 15:27:52
+ * @author: Pat
+ */
+export function throttl(time: number = 500) {
+    let d: any = "";
+    return function (callback: Function) {
+        clearTimeout(d);
+        return new Promise((resolve) => {
+            d = setTimeout(() => resolve(callback), time);
+        })
+    }
 }

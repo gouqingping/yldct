@@ -4,7 +4,7 @@
  * @Email        : gouqingping@yahoo.com
  * @Date         : 2020-07-06 10:41:55
  * @LastEditors  : Pat
- * @LastEditTime : 2020-12-29 13:38:04
+ * @LastEditTime : 2021-03-05 17:54:02
  */
 import PinYin from "./PinYin.js"
 /**
@@ -362,4 +362,42 @@ export function colorHex(rgb) {
     } else {
         return _this;
     }
+}
+/**
+ * @description: 图片懒加载
+ * @param {any} tags
+ * @Date: 2021-03-05 16:37:53
+ * @author: Pat
+ */
+export function lazyLoad(tags,node = null) {
+    let globals = node||window||globalThis||global, ele = node||document.documentElement;
+    // 获取当前Tag滚动条的高度
+    const _getTop = tag => {
+        let ot = tag.offsetTop;
+        while(tag = tag.offsetParent) {
+            ot += tag.offsetTop;
+        }
+        return ot
+    }, 
+    // 遍历所有Tag判断
+    // 如果当前可视区域高度+当前页面滚动条的高度 大于 当前Tag所在的位置
+    // 那么开始加载当前的Tag，将Tag data-src 的值转换为 src
+    _loadImg = tagArr => {
+        // 获取可视区域高度
+        let sltHeight = ele.clientHeight,slTop = ele.scrollTop || document.body.scrollTop;
+        tagArr.forEach(tag=>{
+            if ((sltHeight + slTop) > _getTop(tag)) {
+                const src = tag.getAttribute("data-src");
+                tag.removeAttribute("data-src");
+                tag.src = src?src:tag.src;
+            }
+        })
+    },
+    currentScrollChange = () => (_loadImg(tags)),
+    currentNodeStateChange = ()=> (globals.removeEventListener("scroll",currentScrollChange));
+    currentScrollChange();
+    //onscroll()在滚动条滚动的时候触发
+    globals.addEventListener('scroll', currentScrollChange);
+    globals.addEventListener("beforeunload",currentNodeStateChange);
+    globals.addEventListener('DOMNodeRemoved',currentNodeStateChange);
 }

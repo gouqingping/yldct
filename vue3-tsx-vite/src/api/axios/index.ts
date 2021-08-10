@@ -1,8 +1,7 @@
 // import qs from "qs";
-import { Case, isType } from "./_utils";
+import { Case, isType, throttl, AnyObject } from "./_utils";
 import axios from "./axios.config";
-import { AnyObject } from "element-plus/lib/el-table/src/table.type";
-export const request = (type: string, url: string, data: any, headers = {
+const request = (type: string, url: string, data: any, headers = {
     "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
 }) => new Promise((resolve, reject) => {
     axios[type](url, Case(type) === Case("post") ? JSON.stringify(data) : data, { headers })
@@ -14,9 +13,7 @@ export const request = (type: string, url: string, data: any, headers = {
         .catch((err: any) => {
             reject(err)
         })
-})
-
-export const REQUEST_AXIOS: AnyObject = {
+}), REQUEST_AXIOS: AnyObject = {
     /**
      * @description: post request
      * @param {string} url  
@@ -118,9 +115,16 @@ export const REQUEST_AXIOS: AnyObject = {
             })
         })
     }
-}
+};
+
+let currentUrl: string, requestThrottl: Function;
 
 export default async function ElAxios(type: string, url: string, params: any) {
+    let key: string = `${url}_${type}_${JSON.stringify(params)}`;
+    if (currentUrl != key) {
+        currentUrl = key;
+        requestThrottl = throttl(0)
+    }
     if (!type && !isType(type, "string")) {
         throw 'ElAxios Error: type is undefined!'
         return
@@ -129,7 +133,7 @@ export default async function ElAxios(type: string, url: string, params: any) {
         return
     }
     if (REQUEST_AXIOS[type]) {
-        return await REQUEST_AXIOS[type](url, params)
+        return requestThrottl(await REQUEST_AXIOS[type](url, params))
     } else {
         throw 'ElAxios Error: Type is undefined!'
         return
