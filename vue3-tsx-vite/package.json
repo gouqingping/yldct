@@ -20,7 +20,7 @@
     "vuex": "^4.0.0-rc.2"
   },
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.0.5",
+    "@vue/compiler-sfc": "^3.2.45",
     "@types/mockjs": "^1.0.3",
     "@vitejs/plugin-vue": "^1.1.0",
     "babel-plugin-component": "^1.1.1",
